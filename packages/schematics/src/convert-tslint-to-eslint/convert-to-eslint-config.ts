@@ -60,6 +60,7 @@ export function createConvertToESLintConfig(context: SchematicContext) {
   return async function convertToESLintConfig(
     pathToTslintJson: string,
     tslintJson: Record<string, unknown>,
+    isRoot: boolean,
   ): Promise<{
     convertedESLintConfig: ESLintLinter.Config;
     unconvertedTSLintRules: TslintToEslintConfig.TSLintRuleOptions[];
@@ -130,6 +131,11 @@ export function createConvertToESLintConfig(context: SchematicContext) {
       summarizedConfiguration,
       originalConfigurations,
     ) as ESLintLinter.Config;
+
+    // tslint-to-eslint-config always sets `"root": true` by default when converting, so we need our own isRoot flag on top
+    if (!isRoot) {
+      delete convertedESLintConfig.root;
+    }
 
     return {
       convertedESLintConfig,

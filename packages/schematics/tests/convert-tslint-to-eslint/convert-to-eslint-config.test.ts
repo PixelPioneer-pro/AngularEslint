@@ -43,6 +43,7 @@ describe('convertToESLintConfig()', () => {
     const converted = await convertToESLintConfig(
       'tslint.json',
       exampleRootTslintJson.raw,
+      true,
     );
     // Ensure no-console snapshot is deterministic
     converted.convertedESLintConfig.rules['no-console'][1].allow.sort();
@@ -72,6 +73,7 @@ describe('convertToESLintConfig()', () => {
             "@typescript-eslint",
             "@typescript-eslint/tslint",
           ],
+          "root": true,
           "rules": Object {
             "@angular-eslint/component-class-suffix": "error",
             "@angular-eslint/component-selector": Array [
@@ -207,10 +209,6 @@ describe('convertToESLintConfig()', () => {
               Object {
                 "rules": Object {
                   "import-spacing": true,
-                  "typedef": Array [
-                    true,
-                    "call-signature",
-                  ],
                   "whitespace": Array [
                     true,
                     "check-branch",
@@ -227,6 +225,7 @@ describe('convertToESLintConfig()', () => {
               },
             ],
             "@typescript-eslint/type-annotation-spacing": "error",
+            "@typescript-eslint/typedef": "error",
             "@typescript-eslint/unified-signatures": "error",
             "arrow-body-style": "error",
             "complexity": "off",
@@ -238,7 +237,7 @@ describe('convertToESLintConfig()', () => {
               "smart",
             ],
             "guard-for-in": "error",
-            "id-blacklist": Array [
+            "id-denylist": Array [
               "error",
               "any",
               "Number",
@@ -352,13 +351,6 @@ describe('convertToESLintConfig()', () => {
           },
           Object {
             "ruleArguments": Array [
-              "call-signature",
-            ],
-            "ruleName": "typedef",
-            "ruleSeverity": "error",
-          },
-          Object {
-            "ruleArguments": Array [
               "check-branch",
               "check-decl",
               "check-operator",
@@ -379,6 +371,7 @@ describe('convertToESLintConfig()', () => {
       convertToESLintConfig(
         'projects/app1/tslint.json',
         exampleProjectTslintJson.raw,
+        false,
       ),
     ).resolves.toMatchInlineSnapshot(`
             Object {
@@ -390,7 +383,6 @@ describe('convertToESLintConfig()', () => {
                 },
                 "extends": Array [
                   "prettier",
-                  "prettier/@typescript-eslint",
                 ],
                 "parser": "@typescript-eslint/parser",
                 "parserOptions": Object {

@@ -219,6 +219,7 @@ function convertRootTSLintConfig(
     const convertedRoot = await convertToESLintConfig(
       'tslint.json',
       rawRootTSLintJson,
+      true,
     );
 
     const convertedRootESLintConfig = convertedRoot.convertedESLintConfig;
@@ -387,6 +388,7 @@ function convertNonRootTSLintConfig(
     const convertedProject = await convertToESLintConfig(
       projectTSLintJsonPath,
       rawProjectTSLintJson,
+      false,
     );
 
     const convertedProjectESLintConfig = convertedProject.convertedESLintConfig;
@@ -610,6 +612,7 @@ function handleFormattingRules(
   }
   if (!schema.convertIndentationRules) {
     delete convertedConfig.rules['@typescript-eslint/indent'];
+    delete convertedConfig.rules['indent'];
     return;
   }
   /**
@@ -705,6 +708,16 @@ function dedupeRulesAgainstConfigs(
   otherConfigs: Linter.Config[],
 ) {
   otherConfigs.forEach((againstConfig) => {
+    // If a rule has been explicltly disabled in the config being extended from, then cut it out of the final converted config
+    for (const ruleName in convertedConfig.rules) {
+      if (
+        againstConfig.rules?.[ruleName] &&
+        againstConfig.rules?.[ruleName] === 'off'
+      ) {
+        delete convertedConfig.rules[ruleName];
+      }
+    }
+
     updateObjPropAndRemoveDuplication(
       convertedConfig,
       againstConfig,
@@ -745,12 +758,6 @@ function warnInCaseOfUnconvertedRules(
    * // FORMATTING! Please use prettier y'all!
    * "import-spacing": true
    *
-   * // POSSIBLY NOT REQUIRED - typescript-eslint provides explicit-function-return-type (not yet enabled)
-   * "typedef": [
-   *    true,
-   *    "call-signature",
-   *  ]
-   *
    * // FORMATTING! Please use prettier y'all!
    *  "whitespace": [
    *    true,
@@ -765,9 +772,7 @@ function warnInCaseOfUnconvertedRules(
   const unconvertedTSLintRuleNames = unconvertedTSLintRules
     .filter(
       (unconverted) =>
-        !['import-spacing', 'whitespace', 'typedef'].includes(
-          unconverted.ruleName,
-        ),
+        !['import-spacing', 'whitespace'].includes(unconverted.ruleName),
     )
     .map((unconverted) => unconverted.ruleName);
 
