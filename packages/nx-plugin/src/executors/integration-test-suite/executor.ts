@@ -6,7 +6,6 @@ export default async function runExecutor(
   options: IntegrationTestSuiteExecutorSchema,
   context: ExecutorContext,
 ) {
-  const withRegistry = options.withRegistry ?? false;
   const updateSnapshots = options.updateSnapshots ?? false;
 
   return runCommands(
@@ -14,10 +13,9 @@ export default async function runExecutor(
       parallel: false,
       cwd: options.cwd,
       commands: [
-        withRegistry
-          ? 'npx nx spawn-and-populate-local-registry integration-tests'
-          : null,
-        `npx jest ${options.testFilePath}${updateSnapshots ? ' -u' : ''}`,
+        `npx jest --runInBand ${options.testFilePath}${
+          updateSnapshots ? ' -u' : ''
+        }`,
       ].filter(Boolean) as string[],
       __unparsed__: [],
     },

@@ -4,5 +4,5 @@
     "composite": false,
     "rootDir": "."
   },
-  "include": ["tests", "spawn-and-populate-local-registry.ts"]
+  "include": ["tests"]
 }

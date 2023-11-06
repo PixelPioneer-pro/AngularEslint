@@ -114,3 +114,7 @@ dist
 .rts2*
 
 tmp
+
+.nx/cache
+
+packages/integration-tests/fixtures

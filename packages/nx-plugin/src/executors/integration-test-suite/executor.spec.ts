@@ -28,35 +28,26 @@ const mockContext: ExecutorContext = {
 };
 
 describe('IntegrationTestSuite Executor', () => {
-  it('can should invoke the nx:run-commands executor with the commands needed to spawn the regsitry and run jest', async () => {
+  it('can should invoke the nx:run-commands executor with the commands needed to spawn the registry and run jest', async () => {
     await executor(options, mockContext);
     expect(mockNxRunCommandsExecutor).toHaveBeenNthCalledWith(
       1,
       {
         parallel: false,
         cwd: options.cwd,
-        commands: ['npx jest libs/proj/src/lib/proj.spec.ts'],
+        commands: ['npx jest --runInBand libs/proj/src/lib/proj.spec.ts'],
         __unparsed__: [],
       },
       mockContext,
     );
 
-    await executor(
-      {
-        ...options,
-        withRegistry: true,
-      },
-      mockContext,
-    );
+    await executor(options, mockContext);
     expect(mockNxRunCommandsExecutor).toHaveBeenNthCalledWith(
       2,
       {
         parallel: false,
         cwd: options.cwd,
-        commands: [
-          'npx nx spawn-and-populate-local-registry integration-tests',
-          'npx jest libs/proj/src/lib/proj.spec.ts',
-        ],
+        commands: ['npx jest --runInBand libs/proj/src/lib/proj.spec.ts'],
         __unparsed__: [],
       },
       mockContext,
@@ -65,7 +56,6 @@ describe('IntegrationTestSuite Executor', () => {
     await executor(
       {
         ...options,
-        withRegistry: true,
         updateSnapshots: true,
       },
       mockContext,
@@ -75,10 +65,7 @@ describe('IntegrationTestSuite Executor', () => {
       {
         parallel: false,
         cwd: options.cwd,
-        commands: [
-          'npx nx spawn-and-populate-local-registry integration-tests',
-          'npx jest libs/proj/src/lib/proj.spec.ts -u',
-        ],
+        commands: ['npx jest --runInBand libs/proj/src/lib/proj.spec.ts -u'],
         __unparsed__: [],
       },
       mockContext,

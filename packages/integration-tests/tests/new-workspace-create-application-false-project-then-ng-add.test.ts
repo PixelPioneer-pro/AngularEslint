@@ -1,12 +1,12 @@
+import path from 'node:path';
 import { setWorkspaceRoot } from 'nx/src/utils/workspace-root';
-import path from 'path';
 import {
   FIXTURES_DIR,
   LONG_TIMEOUT_MS,
   runNgAdd,
   runNgGenerate,
   runNgNew,
-} from '../utils/local-registry-process';
+} from '../utils/process-utils';
 import { requireUncached } from '../utils/require-uncached';
 import { runLint } from '../utils/run-lint';
 import { normalizeVersionsOfPackagesWeDoNotControl } from '../utils/snapshot-serializers';

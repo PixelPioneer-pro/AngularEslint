@@ -34,29 +34,6 @@
         "parallel": false,
         "commands": ["npx rimraf tmp/local-registry/storage"]
       }
-    },
-    "spawn-and-populate-local-registry": {
-      "dependsOn": [
-        {
-          "target": "build",
-          "dependencies": true
-        },
-        {
-          "target": "kill-existing-verdaccio"
-        },
-        {
-          "target": "reset-verdaccio-storage"
-        }
-      ],
-      "executor": "nx:run-commands",
-      "options": {
-        "cwd": "packages/integration-tests",
-        "commands": [
-          "npx ts-node --project tsconfig.tools.json spawn-and-populate-local-registry.ts",
-          "exit 0"
-        ],
-        "readyWhen": "Publishing complete"
-      }
     }
   },
   "implicitDependencies": [

@@ -9,6 +9,9 @@ module.exports = {
   collectCoverage: false,
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   coverageReporters: ['text-summary', 'lcov'],
+  globalSetup: './utils/global-setup.ts',
+  globalTeardown: './utils/global-teardown.ts',
+  maxWorkers: 1,
   /* TODO: Update to latest Jest snapshotFormat
    * By default Nx has kept the older style of Jest Snapshot formats
    * to prevent breaking of any existing tests with snapshots.

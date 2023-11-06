@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import execa from 'execa';
-import path from 'path';
+import path from 'node:path';
+import { FIXTURES_DIR } from './process-utils';
 
 import stripAnsi = require('strip-ansi');
-
-const FIXTURES_DIR = path.join(__dirname, '../fixtures/');
 
 function normalizeOutput(value: unknown): string {
   const ansiRemoved = stripAnsi(String(value));
