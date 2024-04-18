@@ -14,7 +14,8 @@
     "dist",
     "package.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "!**/*.tsbuildinfo"
   ],
   "schematics": "./dist/collection.json",
   "ng-update": {

@@ -1,5 +1,25 @@
 {
-  "extends": "./tsconfig.build.json",
-  "include": ["src", "tests"],
-  "exclude": ["jest.config.ts"]
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc/eslint-plugin-template",
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.json"],
+  "references": [
+    {
+      "path": "../utils"
+    },
+    {
+      "path": "../bundled-angular-compiler"
+    },
+    {
+      "path": "../template-parser"
+    },
+    {
+      "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
 }

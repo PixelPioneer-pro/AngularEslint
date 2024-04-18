@@ -4,7 +4,7 @@
   "plugins": ["@nx"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": ["*.ts", "*.mts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -31,7 +31,7 @@
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": ["*.ts", "*.mts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
       "rules": {}
     },

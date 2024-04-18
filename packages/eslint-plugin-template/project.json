@@ -4,17 +4,9 @@
   "type": "library",
   "targets": {
     "build": {
-      "executor": "nx:run-commands",
+      "dependsOn": ["compile"],
       "outputs": ["{projectRoot}/dist"],
-      "options": {
-        "cwd": "packages/eslint-plugin-template",
-        "parallel": false,
-        "commands": [
-          "npx rimraf ./dist",
-          "npx tsc --project tsconfig.build.json",
-          "npx ncp ./src/configs ./dist/configs"
-        ]
-      }
+      "command": "ncp {projectRoot}/src/configs {projectRoot}/dist/configs"
     },
     "test": {
       "dependsOn": [
@@ -29,7 +21,6 @@
         "passWithNoTests": false
       }
     },
-    "typecheck": {},
     "check-rule-docs": {
       "dependsOn": [
         {

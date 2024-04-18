@@ -4,9 +4,9 @@
     "rootDir": "src",
     "outDir": "dist",
     "emitDeclarationOnly": false,
-    "tsBuildInfoFile": "../../dist/tsconfig.lib.tsbuildinfo",
+    "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "resolveJsonModule": true
   },
   "exclude": ["**/*.spec.ts"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts", "src/**/*.json"]
 }

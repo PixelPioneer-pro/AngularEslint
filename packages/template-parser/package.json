@@ -14,7 +14,8 @@
     "dist",
     "package.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "!**/*.tsbuildinfo"
   ],
   "dependencies": {
     "@angular-eslint/bundled-angular-compiler": "17.3.0",
