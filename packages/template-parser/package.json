@@ -18,7 +18,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@angular-eslint/bundled-angular-compiler": "17.4.0",
+    "@angular-eslint/bundled-angular-compiler": "file:../bundled-angular-compiler",
     "eslint-scope": "^8.0.0"
   },
   "peerDependencies": {

@@ -21,7 +21,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "@angular-eslint/bundled-angular-compiler": "17.4.0",
+    "@angular-eslint/bundled-angular-compiler": "file:../bundled-angular-compiler",
     "@typescript-eslint/utils": "7.8.0"
   },
   "gitHead": "e2006e5e9c99e5a943d1a999e0efa5247d29ec24"

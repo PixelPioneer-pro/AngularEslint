@@ -34,8 +34,8 @@
     "save": "devDependencies"
   },
   "dependencies": {
-    "@angular-eslint/eslint-plugin": "17.4.0",
-    "@angular-eslint/eslint-plugin-template": "17.4.0",
+    "@angular-eslint/eslint-plugin": "file:../eslint-plugin",
+    "@angular-eslint/eslint-plugin-template": "file:../eslint-plugin-template",
     "@nx/devkit": "^17.2.8 || ^18.0.0 || ^19.0.0",
     "ignore": "5.3.1",
     "nx": "^17.2.8 || ^18.0.0 || ^19.0.0",

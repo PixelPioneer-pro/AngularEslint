@@ -18,8 +18,8 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@angular-eslint/bundled-angular-compiler": "17.4.0",
-    "@angular-eslint/utils": "17.4.0",
+    "@angular-eslint/bundled-angular-compiler": "file:../bundled-angular-compiler",
+    "@angular-eslint/utils": "file:../utils",
     "@typescript-eslint/utils": "7.8.0"
   },
   "peerDependencies": {
